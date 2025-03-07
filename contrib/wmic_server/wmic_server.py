@@ -75,7 +75,9 @@ def encode_value(value):
         # you need to choose some JSON compatible datetime conversion
         # if you want to return a native python value then
         #   return value.isoformat()
-        return dt_fmt(value)
+        # return dt_fmt(value)
+        # we want to match wmic output so change the format back to what windows returns
+        return value.strftime('%Y%m%d%H%M%S.%f%z')
     if isinstance(value, timedelta):
         # you need to choose some JSON compatible timedelta conversion
         return value.microseconds
